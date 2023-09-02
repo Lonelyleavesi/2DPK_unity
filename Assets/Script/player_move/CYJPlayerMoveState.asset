@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 530e556d4407947dcae7102ff497587d, type: 3}
+  m_Name: CYJPlayerMoveState
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"graph":{"title":"\u89d2\u8272\u79fb\u52a8","summary":null,"pan":{"x":0.0,"y":98.0},"zoom":1.0,"elements":[{"nest":{"source":"Embed","macro":null,"embed":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":"idle_state","summary":null,"pan":{"x":42.0,"y":-34.0},"zoom":1.0,"elements":[{"coroutine":false,"defaultValues":{},"position":{"x":-205.0,"y":-215.0},"guid":"1a1fd432-298a-4d14-b572-51690bed2120","$version":"A","$type":"Unity.VisualScripting.OnEnterState"},{"coroutine":false,"defaultValues":{},"position":{"x":-212.0,"y":-45.0},"guid":"12e82192-f228-4da2-839f-57388f6e8fd0","$version":"A","$type":"Unity.VisualScripting.Update"},{"coroutine":false,"defaultValues":{},"position":{"x":-205.0,"y":145.0},"guid":"b55c95cc-b968-426b-864a-4bc6623745ae","$version":"A","$type":"Unity.VisualScripting.OnExitState"}],"$version":"A"}},"isStart":true,"position":{"x":-275.0,"y":-147.0},"width":170.0,"guid":"cd270065-88a4-48f7-bece-59327e2e6c49","$version":"A","$type":"Unity.VisualScripting.FlowState","$id":"3"},{"nest":{"source":"Macro","macro":0,"embed":null},"isStart":false,"position":{"x":113.0,"y":-147.0},"width":170.0,"guid":"267f2f1b-a18a-41f8-b1c2-ed699e05fb82","$version":"A","$type":"Unity.VisualScripting.FlowState","$id":"19"},{"nest":{"source":"Macro","macro":1,"embed":null},"isStart":false,"position":{"x":-55.0,"y":161.0},"width":170.0,"guid":"16a1daf5-c110-45c2-89dc-4c202de8bc62","$version":"A","$type":"Unity.VisualScripting.FlowState","$id":"21"},{"nest":{"source":"Macro","macro":2,"embed":null},"source":{"$ref":"3"},"destination":{"$ref":"19"},"guid":"5f440f7c-b639-4a4d-bef9-dc478a38ba0d","$version":"A","$type":"Unity.VisualScripting.FlowStateTransition"},{"nest":{"source":"Macro","macro":3,"embed":null},"source":{"$ref":"19"},"destination":{"$ref":"3"},"guid":"b7d31029-538e-4838-9719-a0e3493a1ff7","$version":"A","$type":"Unity.VisualScripting.FlowStateTransition"},{"nest":{"source":"Macro","macro":4,"embed":null},"source":{"$ref":"3"},"destination":{"$ref":"21"},"guid":"5a8726a0-a2e8-4801-ba48-fc8ce57b04c5","$version":"A","$type":"Unity.VisualScripting.FlowStateTransition"},{"nest":{"source":"Macro","macro":5,"embed":null},"source":{"$ref":"19"},"destination":{"$ref":"21"},"guid":"88e769e0-d322-48ae-ad29-5108db55ab37","$version":"A","$type":"Unity.VisualScripting.FlowStateTransition"}],"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: c256464907d45334b9e3b1e2fed2970e, type: 2}
+    - {fileID: 11400000, guid: 46ada91a886d37a46ad4ee386b2084ce, type: 2}
+    - {fileID: 11400000, guid: 789570b95c185cd4bae257d82aa08429, type: 2}
+    - {fileID: 11400000, guid: a799fe75393d2fb4887be96fb6a797e2, type: 2}
+    - {fileID: 11400000, guid: 3fab3af331259a440abee38ae57068ca, type: 2}
+    - {fileID: 11400000, guid: 3fab3af331259a440abee38ae57068ca, type: 2}
