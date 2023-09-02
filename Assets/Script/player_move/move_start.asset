@@ -1,17 +1,3 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
-  m_Name: move_start
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":null,"summary":null,"pan":{"x":-386.2371,"y":656.4775},"zoom":0.8,"elements":[{"defaultValues":{},"position":{"x":-266.0,"y":603.0},"guid":"6f5bf28c-4626-4993-bd26-bed2aa9461fe","$version":"A","$type":"Unity.VisualScripting.TriggerStateTransition","$id":"9"},{"coroutine":false,"defaultValues":{"buttonName":{"$content":"Horizontal","$type":"System.String"},"action":{"$content":"Down","$type":"Unity.VisualScripting.PressState"}},"position":{"x":-575.0,"y":592.0},"guid":"1df4cb9e-fc0b-4187-8fe5-6a2fd67f83e3","$version":"A","$type":"Unity.VisualScripting.OnButtonInput","$id":"11"},{"sourceUnit":{"$ref":"11"},"sourceKey":"trigger","destinationUnit":{"$ref":"9"},"destinationKey":"trigger","guid":"c9dc99c6-033d-409c-9d8b-2c0bd44c734f","$type":"Unity.VisualScripting.ControlConnection"}],"$version":"A"}}'
-    _objectReferences: []
+version https://git-lfs.github.com/spec/v1
+oid sha256:ce77ae05138d099a237a12c33a31a48772fee64829b77096d2ad4464c4cb02e7
+size 1473
