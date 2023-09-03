@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -32,6 +31,8 @@ public class CrouchHelper : MonoBehaviour
     public void initCrouchState()
     {
         _isCrouch = true;
+        _colorTween = null;
+
         var player = (GameObject)Variables.Object(this).Get("player");
         var playerColl = player.GetComponent<CapsuleCollider2D>();
 
@@ -63,12 +64,27 @@ public class CrouchHelper : MonoBehaviour
     // 用户在蹲下时的操作，左右移动
     public void HandleUserInput(Vector2 userInputHorizontal)
     {
-        if (userInputHorizontal.x == 0) {
+        if (userInputHorizontal.x == 0 || _readySuperJump) {
             return;
         }
         var player = (GameObject)Variables.Object(this).Get("player");
         var playerRB = player.GetComponent<Rigidbody2D>( );
 
         playerRB.velocity = new Vector2(_moveSpeedWhenCrouch * userInputHorizontal.x, playerRB.velocity.y);
+    }
+
+    [Header("超级跳相关")]
+    public Color _saveEnergyColor;
+    public float _saveMaxTime;
+    private Tween _colorTween;
+    private bool _readySuperJump;
+   
+    public void readySuperJump()
+    {
+        var player = (GameObject)Variables.Object(this).Get("player");
+        Material mat = player.GetComponent<Renderer>( ).material;
+        if (_colorTween == null) {
+            _colorTween = mat.DOColor(_saveEnergyColor, _saveMaxTime);
+        } 
     }
 }

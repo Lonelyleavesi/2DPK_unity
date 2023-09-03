@@ -1582,7 +1582,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -1618,8 +1618,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.678403}
-  m_Size: {x: 0.5412811, y: 1.1467879}
+  m_Offset: {x: 0, y: 0.6}
+  m_Size: {x: 0.5412811, y: 1.2}
   m_Direction: 0
 --- !u!212 &1027178895
 SpriteRenderer:
@@ -1681,13 +1681,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027178892}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalPosition: {x: 1.692, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1107943611}
-  - {fileID: 1154226230}
   - {fileID: 617259312}
+  - {fileID: 1154226230}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1835,6 +1835,9 @@ GameObject:
   - component: {fileID: 1154226232}
   - component: {fileID: 1154226231}
   - component: {fileID: 1154226233}
+  - component: {fileID: 1154226234}
+  - component: {fileID: 1154226235}
+  - component: {fileID: 1154226236}
   m_Layer: 0
   m_Name: MoveController
   m_TagString: Untagged
@@ -1887,8 +1890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _data:
     _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"player","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"move_speed","value":{"$content":10,"$type":"System.Int32"},"typeHandle":{"Identification":"System.Int32,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 1027178892}
 --- !u!114 &1154226233
@@ -1903,10 +1905,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e04bcef6d23c947b7536601fb493da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  machine: {fileID: 1154226231}
-  foot: {fileID: 617259312}
-  isGround: 1
-  Ground:
+  _moveSpeedAmend: 0.75
+  _moveSpeedWhenJump: 3
+  _enableMultiJump: 1
+  _multiJumpMaxTimes: 1
+  _multiJumpCurrTimes: 0
+  _multiJumpSpeeds:
+  - 15
+  - 5
+  _machine: {fileID: 1154226231}
+  _foot: {fileID: 617259312}
+  _isGround: 0
+  _Ground:
     serializedVersion: 2
     m_Bits: 64
-  jumpSpeed: 7
+--- !u!114 &1154226234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154226229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2fe5546f775c47d2820aa5e8a715f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _data:
+    _json: '{"nest":{"source":"Embed","macro":null,"embed":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":"\u6839\u636e\u7528\u6237\u5de6\u53f3\u8f93\u5165\u63a7\u5236Player\u65b9\u5411","summary":null,"pan":{"x":134.0,"y":123.0},"zoom":1.0,"elements":[{"coroutine":false,"defaultValues":{},"position":{"x":-167.0,"y":-110.0},"guid":"85a1070f-dbab-414f-bbb6-12f16bb5f842","$version":"A","$type":"Unity.VisualScripting.Update","$id":"10"},{"nest":{"source":"Macro","macro":0,"embed":null},"defaultValues":{},"position":{"x":70.0,"y":19.0},"guid":"1e03c750-f38b-4601-ae4b-0401ba71cba4","$version":"A","$type":"Unity.VisualScripting.SubgraphUnit","$id":"12"},{"specifyFallback":false,"kind":"Object","defaultValues":{"name":{"$content":"player","$type":"System.String"},"object":null},"position":{"x":-163.0,"y":238.0},"guid":"c5697997-ba8b-4af6-ae0a-7948c2414480","$version":"A","$type":"Unity.VisualScripting.GetVariable","$id":"15"},{"kind":"Graph","defaultValues":{"name":{"$content":"face_direction","$type":"System.String"}},"position":{"x":426.0,"y":63.0},"guid":"2e3c03fb-8b96-4040-9583-13407123f567","$version":"A","$type":"Unity.VisualScripting.SetVariable","$id":"17"},{"chainable":false,"parameterNames":["axisName"],"member":{"name":"GetAxis","parameterTypes":["System.String"],"targetType":"UnityEngine.Input","targetTypeName":"UnityEngine.Input","$version":"A"},"defaultValues":{"%axisName":{"$content":"Horizontal","$type":"System.String"}},"position":{"x":-289.0,"y":61.0},"guid":"f98c8721-3834-411e-9bfa-1929d18a07c7","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"19"},{"sourceUnit":{"$ref":"10"},"sourceKey":"trigger","destinationUnit":{"$ref":"12"},"destinationKey":"updateInput","guid":"1a40f03d-7cbb-4dc1-9a9b-80aeccd2fe36","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"12"},"sourceKey":"changeDirectionEnd","destinationUnit":{"$ref":"17"},"destinationKey":"assign","guid":"18af756d-ae39-4251-a449-e84919aa17ba","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"value","destinationUnit":{"$ref":"12"},"destinationKey":"PlayerObject","guid":"26048fb5-da07-414a-8c9b-c6ec42b277e4","$type":"Unity.VisualScripting.ValueConnection"},{"sourceUnit":{"$ref":"12"},"sourceKey":"faceDirection","destinationUnit":{"$ref":"17"},"destinationKey":"input","guid":"7198f1d8-eb8b-4cca-b0f2-7b6de1e40bd3","$type":"Unity.VisualScripting.ValueConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"result","destinationUnit":{"$ref":"12"},"destinationKey":"UserHorizontalAxis","guid":"039a0daf-da48-4c52-b331-a14f13266e06","$type":"Unity.VisualScripting.ValueConnection"}],"$version":"A"}}}'
+    _objectReferences:
+    - {fileID: 11400000, guid: c00a6dd5c1a797d49a52f99ab6925fc6, type: 2}
+--- !u!114 &1154226235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154226229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f03352d137af784781f0dd27b973862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeedWhenCrouch: 2
+  _crouchReduceAmend: 0.7
+  _isCrouch: 0
+  _saveEnergyColor: {r: 0.24142039, g: 0.9339623, b: 0.85724694, a: 1}
+  _saveMaxTime: 1
+--- !u!114 &1154226236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154226229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ff2b2a7bdd5924386d79ead74b8758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
