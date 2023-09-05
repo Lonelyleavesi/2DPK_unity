@@ -32,17 +32,24 @@ public class JumpHelper : MonoBehaviour
     public LayerMask _Ground;
 
 
-
     public void TriggerJump()
     {
         _isGround = false;
         _multiJumpCurrTimes = 0;
 
+        var isSuperJump = (int)Variables.Object(this).Get("super_jump_flag");
+        var superJumpReadyRatio = (float)Variables.Object(this).Get("super_jump_speed_incremental_ratio");
+
         var player = (GameObject)Variables.Object(this).Get("player");
         var playerRB = player.GetComponent<Rigidbody2D>();
 
         var speedX = playerRB.velocity.x;
-        playerRB.velocity = new Vector2(speedX * _moveSpeedAmend, _multiJumpSpeeds[_multiJumpCurrTimes]);
+        var speedY = _multiJumpSpeeds[_multiJumpCurrTimes];
+        if (isSuperJump > 0) {
+            Variables.Object(this).Set("super_jump_flag", 0);
+            speedY *= 1 + superJumpReadyRatio;
+        }
+        playerRB.velocity = new Vector2(speedX * _moveSpeedAmend, speedY);
     }
 
     public void CheckOnGround ()

@@ -1,6 +1,8 @@
 using DG.Tweening;
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CrouchHelper : MonoBehaviour
 {
@@ -24,15 +26,20 @@ public class CrouchHelper : MonoBehaviour
     private Vector2 _playCollSize;
     private Vector2 _playCollOffset;
 
+    private void Start( )
+    {
+        _isCrouch = true;
+        _circleTween = null;
+        _circleOutlineImage = _circleOutline.GetComponent<Image>( );
+        this.ResetCircleImage( );
+    }
+
     /// <summary>
     ///  进入蹲下的状态：
     ///  - 修改player的碰撞器体积
     /// </summary>
     public void initCrouchState()
     {
-        _isCrouch = true;
-        _colorTween = null;
-
         var player = (GameObject)Variables.Object(this).Get("player");
         var playerColl = player.GetComponent<CapsuleCollider2D>();
 
@@ -53,12 +60,20 @@ public class CrouchHelper : MonoBehaviour
     public void exitCrouchState( )
     {
         _isCrouch = false;
+        _circleOutline.SetActive(false);
+
         var player = (GameObject)Variables.Object(this).Get("player");
         var playerColl = player.GetComponent<CapsuleCollider2D>( );
 
-
         playerColl.size =  _playCollSize;
         playerColl.offset = _playCollOffset;
+
+        _circleTween.Restart( );
+        _circleTween.Pause( );
+        _circleColorTween.Restart( );
+        _circleColorTween.Pause( );
+
+        this.ResetCircleImage();
     }
 
     // 用户在蹲下时的操作，左右移动
@@ -74,17 +89,45 @@ public class CrouchHelper : MonoBehaviour
     }
 
     [Header("超级跳相关")]
-    public Color _saveEnergyColor;
-    public float _saveMaxTime;
-    private Tween _colorTween;
+    [SerializeField] private Color _initCircleColor;
+    [SerializeField] private Color _saveEnergyColor;
+    [SerializeField] private float _tweenDuration;  // 过度动画最多时间
+    private Tween _circleTween;   // 转圈过度动画
+    private Tween _circleColorTween;  // 变色过度动画
+    [SerializeField] private GameObject _circleOutline;
+    private Image _circleOutlineImage;
+
     private bool _readySuperJump;
-   
+
+    public int _super_jump_speed_incremental_num; // 超级跳最大提升比例
     public void readySuperJump()
     {
-        var player = (GameObject)Variables.Object(this).Get("player");
-        Material mat = player.GetComponent<Renderer>( ).material;
-        if (_colorTween == null) {
-            _colorTween = mat.DOColor(_saveEnergyColor, _saveMaxTime);
-        } 
+        _circleOutline.SetActive(true);
+        if (!_circleTween.playedOnce && !_circleColorTween.playedOnce)
+        {
+            _circleTween.Restart();
+            _circleColorTween.Restart();
+            _circleTween.Play( );
+            _circleColorTween.Play( );
+        }
     }
+
+    void ResetCircleImage( )
+    {
+        _circleOutlineImage.color = _initCircleColor;
+        _circleOutlineImage.fillAmount = 0;
+        _circleTween = _circleOutlineImage.DOFillAmount(1, _tweenDuration).SetEase(Ease.Linear).Pause( );
+        _circleColorTween = _circleOutlineImage.DOColor(Color.red, _tweenDuration).SetEase(Ease.Linear).Pause( );
+    }
+
+    public void triggerSuperJump( )
+    {
+        var superJumpReadyRatio = 1f * _circleOutlineImage.fillAmount;
+        Variables.Object(this).Set("super_jump_speed_incremental_ratio", superJumpReadyRatio);
+        var player = (GameObject)Variables.Object(this).Get("player");
+        CustomEvent.Trigger(player, "crouch_super_jump_event");
+    }
+
+
+
 }
